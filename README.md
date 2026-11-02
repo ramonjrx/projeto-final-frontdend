@@ -23,7 +23,7 @@ Siga os passos abaixo para rodar o projeto na sua máquina:
 
 1. **Clone este repositório:**
    ```bash
-   git clone [https://github.com/ramonjrx/projeto-final-frontdend.git](https://github.com/ramonjrx/projeto-final-frontdend.git)
+   git clone https://github.com/ramonjrx/projeto-final-frontdend.git
    ```
 
 2. **Acesse a pasta do projeto:**

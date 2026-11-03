@@ -2,7 +2,7 @@
 
 E-commerce front-end de calçados e vestuário esportivo, desenvolvido em **React** como projeto final de um treinamento prático em Desenvolvimento Web (Digital College). O foco foi a componentização, a responsividade (mobile first) e a fidelidade ao design do Figma, seguindo os requisitos da documentação oficial.
 
-🔗 **Deploy:** https://projeto-final-frontdend-osg04wca9-ramonjrx.vercel.app
+🔗 **Deploy:** https://projeto-final-frontdend.vercel.app/
 
 ## ✨ Funcionalidades
 

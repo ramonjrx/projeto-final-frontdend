@@ -1,48 +1,129 @@
-# 🛍️ Digital Store - E-commerce Front-end
+# 🛍️ Digital Store
 
-Este é o projeto front-end de uma loja virtual (e-commerce) de calçados e vestuário esportivo, desenvolvido com foco na componentização, responsividade e fidelidade ao design no Figma. O projeto foi construído como parte de um treinamento prático em Desenvolvimento Web.
+E-commerce front-end de calçados e vestuário esportivo, desenvolvido em **React** como projeto final de um treinamento prático em Desenvolvimento Web (Digital College). O foco foi a componentização, a responsividade (mobile first) e a fidelidade ao design do Figma, seguindo os requisitos da documentação oficial.
 
-## 🚀 Funcionalidades Implementadas
+🔗 **Deploy:** https://projeto-final-frontdend-osg04wca9-ramonjrx.vercel.app
 
-* **Vitrine de Produtos Dinâmica:** Listagem de "Produtos em Alta" gerada dinamicamente através de mock data, renderizada em um grid responsivo perfeitamente alinhado (4x2 no desktop).
-* **Galeria de Imagens Interativa:** Componente de carrossel de imagens para a página de detalhes do produto, com navegação por setas, transições suaves, redimensionamento sem distorção e suporte a miniaturas clicáveis.
-* **Roteamento Estruturado:** Navegação fluida entre páginas utilizando o `react-router-dom` com uma estrutura de Layout base (Header e Footer persistentes).
-* **Design Responsivo e Estilização:** Layout construído seguindo o conceito Mobile First utilizando classes utilitárias do PrimeFlex.
+## ✨ Funcionalidades
 
-## 🛠️ Tecnologias Utilizadas
+**Home**
+- Galeria de imagens em carrossel, com setas de navegação e transição suave.
+- Seção "Coleções em destaque" com três imagens.
+- Seção "Produtos em alta" com os produtos em grid responsivo (2 colunas no mobile e até 4 no desktop) e link "Ver todos".
 
-* **React** - Biblioteca JavaScript para construção da interface.
-* **Vite** - Ferramenta de build extremamente rápida.
-* **PrimeFlex** - Biblioteca de utilitários CSS para construção de grids e layouts.
-* **PrimeIcons** - Pacote de ícones utilizado na interface.
-* **React Router Dom** - Gerenciamento de rotas e navegação.
+**Listagem de produtos**
+- Busca pelo campo do cabeçalho: ao pesquisar, a página abre em `/produtos?filter=termo` e filtra por nome, marca e categoria (sem diferenciar acentos nem maiúsculas).
+- Filtros por Marca, Categoria, Gênero (múltipla escolha) e Estado (escolha única), com botão "Limpar filtros".
+- Ordenação por menor ou maior preço.
+- Título com o total de resultados e mensagem quando nada é encontrado.
+- No mobile, os filtros ficam em um painel lateral aberto por um botão.
 
-## ⚙️ Como executar o projeto localmente
+**Visualização do produto**
+- Galeria com miniaturas clicáveis e navegação por setas.
+- Box de compra com nome, referência, nota, avaliações, preço (com preço antigo riscado quando há desconto) e descrição.
+- Seleção de tamanho (opções quadradas) e de cor (opções circulares).
+- Seção "Produtos recomendados" e tratamento de produto inexistente.
 
-Siga os passos abaixo para rodar o projeto na sua máquina:
+**Geral**
+- Cabeçalho com logo, busca, links de cadastro e login, carrinho e navegação principal. A página ativa é destacada, e no mobile a navegação vira um menu lateral.
+- Rodapé com informações, categorias, contato, redes sociais e ano atual gerado automaticamente.
+- Selo de desconto (`% OFF`) calculado a partir do preço e do preço promocional.
+- Preços formatados em reais (R$).
 
-1. **Clone este repositório:**
-   ```bash
-   git clone [https://github.com/ramonjrx/projeto-final-frontdend.git](https://github.com/ramonjrx/projeto-final-frontdend.git)
-   ```
+## 🛠️ Tecnologias
 
-2. **Acesse a pasta do projeto:**
-   ```bash
-   cd projeto-final-frontdend
-   ```
+- [React 19](https://react.dev/)
+- [Vite](https://vite.dev/)
+- [React Router DOM 7](https://reactrouter.com/)
+- [PrimeFlex](https://primeflex.org/) para layout e utilitários CSS
+- [PrimeIcons](https://primereact.org/icons/) para ícones
+- [PrimeReact](https://primereact.org/) (tema Lara Light Indigo)
+- ESLint para padronização do código
 
-3. **Instale as dependências:**
-   ```bash
-   npm install
-   ```
+## 🗺️ Rotas
 
-4. **Inicie o servidor de desenvolvimento:**
-   ```bash
-   npm run dev
-   ```
+| Rota | Página |
+| --- | --- |
+| `/` | Home |
+| `/produtos` | Listagem de produtos (aceita `?filter=`) |
+| `/produto/:id` | Visualização do produto |
 
-5. **Acesse no navegador:**
-   Abra `http://localhost:5173` para visualizar o projeto rodando.
+## 📁 Estrutura do projeto
+
+```
+projeto-digital-store/
+├── assets/            # SVGs (logos, ícones, redes sociais)
+├── doc/               # Layouts de referência do Figma
+├── public/            # Imagens estáticas (slides, coleções, produtos) e favicon
+├── src/
+│   ├── components/    # Header, Footer, Logo, Section, ProductCard, ProductListing,
+│   │                  # Gallery, FilterGroup, ProductOptions, BuyBox
+│   ├── data/          # products.js (dados de exemplo)
+│   ├── pages/         # Layout, HomePage, ProductListingPage, ProductViewPage
+│   ├── utils/         # formatPrice.js
+│   ├── App.jsx        # Rotas
+│   ├── index.css      # Variáveis de cor e estilos globais
+│   └── main.jsx
+├── vercel.json        # Redireciona todas as rotas para o index.html (SPA)
+└── package.json
+```
+
+## 🧩 Componentes
+
+| Componente | Responsabilidade |
+| --- | --- |
+| `Header` / `Footer` | Cabeçalho e rodapé presentes em todas as páginas (via `Layout`) |
+| `Logo` | Logo reutilizável, com tamanho e imagem configuráveis |
+| `Section` | Bloco com título, alinhamento e link opcional |
+| `ProductCard` | Cartão de produto com imagem, nome, preço e selo de desconto |
+| `ProductListing` | Grid responsivo de `ProductCard` |
+| `Gallery` | Carrossel de imagens com setas e miniaturas opcionais |
+| `FilterGroup` | Grupo de filtros com `checkbox` ou `radio` |
+| `ProductOptions` | Seleção de tamanho ou cor (quadrado ou circular) |
+| `BuyBox` | Informações e ação de compra do produto |
+
+## ⚙️ Como executar localmente
+
+Pré-requisito: [Node.js](https://nodejs.org/) em uma versão LTS recente.
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/ramonjrx/projeto-final-frontdend.git
+
+# 2. Acesse a pasta do projeto
+cd projeto-final-frontdend
+
+# 3. Instale as dependências
+npm install
+
+# 4. Inicie o servidor de desenvolvimento
+npm run dev
+```
+
+Abra `http://localhost:5173` no navegador.
+
+### Scripts disponíveis
+
+| Comando | Descrição |
+| --- | --- |
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera a versão de produção na pasta `dist` |
+| `npm run preview` | Executa localmente a versão de produção |
+| `npm run lint` | Verifica o código com o ESLint |
+
+## 📝 Observações
+
+- Os produtos vêm de dados de exemplo em `src/data/products.js`, sem API.
+- Conforme a documentação, o carrinho é apenas ilustrativo e o botão "Comprar" não tem ação.
+- O breakpoint principal é o `lg` do PrimeFlex (992px): abaixo dele valem o menu lateral e o layout mobile.
+
+## 🚧 Possíveis melhorias
+
+- Carrinho funcional com contador de itens.
+- Consumo de uma API real para os produtos.
+- Cadastro e login de usuários.
+- Testes automatizados.
 
 ---
-*Desenvolvido com dedicação para aprimoramento de habilidades em Front-end (React).*
+
+Desenvolvido por [@ramonjrx](https://github.com/ramonjrx).

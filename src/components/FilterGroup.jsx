@@ -1,5 +1,4 @@
-// README 6.2. Controlado: `selected` (array de values) e `onChange(value, checked)`.
-// `value` é opcional em cada opção; sem ele usamos o `text`.
+
 const FilterGroup = ({ title, inputType = 'checkbox', options = [], selected = [], onChange }) => (
   <fieldset style={{ border: 0, margin: 0, padding: 0, minWidth: 0 }}>
     <legend style={{ padding: 0, marginBottom: '12px', fontSize: '14px', fontWeight: 700, color: 'var(--dark-gray-2)' }}>

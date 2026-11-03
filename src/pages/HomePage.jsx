@@ -3,7 +3,7 @@ import ProductListing from '../components/ProductListing';
 import Section from '../components/Section';
 import { products } from '../data/products';
 
-// Imagens da pasta /public (README 5). Ajuste a quantidade se houver mais/menos arquivos.
+
 const slides = [1, 2, 3, 4].map((n) => ({ src: `/home-slide-${n}.jpeg` }));
 const collections = [1, 2, 3].map((n) => `/collection-${n}.png`);
 

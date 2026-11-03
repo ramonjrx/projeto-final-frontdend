@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-// README 7.2. shape: 'square' | 'circle'; type: 'text' | 'color'.
-// `radius` só vale para shape="square". Seleção interna + onChange opcional.
+
 const ProductOptions = ({ options = [], radius = '4px', shape = 'square', type = 'text', onChange }) => {
   const [selected, setSelected] = useState(null);
   const circle = shape === 'circle';

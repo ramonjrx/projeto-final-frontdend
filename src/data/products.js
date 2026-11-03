@@ -1,5 +1,4 @@
-// Dados de exemplo (README 4.3 / 5.3 / 6.3). Imagens vêm da pasta /public.
-// Ajuste THUMB_COUNT para a quantidade real de product-thumb-N.png que existe em /public.
+
 const THUMB_COUNT = 5;
 
 const base = [

@@ -6,7 +6,7 @@ import ProductOptions from '../components/ProductOptions';
 import Section from '../components/Section';
 import { products } from '../data/products';
 
-// Ajuste para a quantidade real de product-image-N.png em /public
+
 const PRODUCT_IMAGE_COUNT = 5;
 const images = Array.from({ length: PRODUCT_IMAGE_COUNT }, (_, i) => ({ src: `/product-image-${i + 1}.jpeg` }));
 

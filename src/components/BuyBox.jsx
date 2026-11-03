@@ -1,6 +1,6 @@
 import { formatPrice } from '../utils/formatPrice';
 
-// README 7.3. `children` recebe <ProductOptions /> (ou outros componentes).
+
 const BuyBox = ({ name, reference, stars, rating, price, priceDiscount, description, children }) => (
   <div className="flex flex-column" style={{ gap: '16px' }}>
     <h1

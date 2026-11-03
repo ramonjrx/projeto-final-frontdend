@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { formatPrice } from '../utils/formatPrice';
 
-// README 4.2. `id` e `category` são opcionais: com `id` o cartão vira link para /produto/:id.
+
 const ProductCard = ({ id, image, name, category, price, priceDiscount }) => {
   const percent = priceDiscount ? Math.round((1 - priceDiscount / price) * 100) : 0;
 

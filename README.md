@@ -30,6 +30,20 @@ E-commerce front-end de calçados e vestuário esportivo, desenvolvido em **Reac
 - Selo de desconto (`% OFF`) calculado a partir do preço e do preço promocional.
 - Preços formatados em reais (R$).
 
+## 🛒 Fluxo de compra e conta
+
+- **Carrinho:** o botão "Comprar" da página do produto exige tamanho e cor e leva ao carrinho. O ícone do cabeçalho mostra a quantidade e abre um mini carrinho (com "Esvaziar" e "Ver Carrinho").
+- **Página do carrinho:** altera a quantidade, remove itens, aplica cupom e calcula o frete pelo CEP, com resumo de valores e parcelamento em 10x.
+- **Finalizar compra:** formulários de dados pessoais, entrega e pagamento (cartão ou boleto), com máscaras de CPF, celular, CEP e cartão e validação dos campos.
+- **Compra realizada:** mostra os dados do pedido e permite imprimir o recibo. O pedido passa a aparecer em "Meus Pedidos".
+- **Conta:** cadastro em duas etapas, login, edição das informações e menu com a conta logada.
+
+### Como testar
+
+- **Login de exemplo:** `francisco@gmail.com` com qualquer senha, ou crie uma conta em `/cadastro`.
+- **Cupom:** `DIGITAL10` aplica 10% de desconto.
+- **Frete:** informe um CEP de 8 dígitos. Frete grátis em compras a partir de R$ 200,00; abaixo disso, R$ 19,90.
+
 ## 🛠️ Tecnologias
 
 - [React 19](https://react.dev/)
@@ -45,8 +59,15 @@ E-commerce front-end de calçados e vestuário esportivo, desenvolvido em **Reac
 | Rota | Página |
 | --- | --- |
 | `/` | Home |
-| `/produtos` | Listagem de produtos (aceita `?filter=`) |
+| `/produtos` e `/categorias` | Listagem de produtos (aceita `?filter=`) |
 | `/produto/:id` | Visualização do produto |
+| `/carrinho` | Carrinho de compras |
+| `/checkout` | Finalizar compra |
+| `/sucesso` | Compra realizada |
+| `/login` | Acesso à conta |
+| `/cadastro` | Criação de conta (2 etapas) |
+| `/meus-pedidos` | Meus pedidos (exige login) |
+| `/minhas-informacoes` | Minhas informações, com edição (exige login) |
 
 ## 📁 Estrutura do projeto
 
@@ -57,10 +78,14 @@ projeto-digital-store/
 ├── public/            # Imagens estáticas (slides, coleções, produtos) e favicon
 ├── src/
 │   ├── components/    # Header, Footer, Logo, Section, ProductCard, ProductListing,
-│   │                  # Gallery, FilterGroup, ProductOptions, BuyBox
-│   ├── data/          # products.js (dados de exemplo)
-│   ├── pages/         # Layout, HomePage, ProductListingPage, ProductViewPage
-│   ├── utils/         # formatPrice.js
+│   │                  # Gallery, FilterGroup, ProductOptions, BuyBox, MiniCart,
+│   │                  # CartItem, formulários e demais componentes de apoio
+│   ├── context/       # Estado global (carrinho, login e pedidos)
+│   ├── data/          # products.js e mock.js (dados de exemplo)
+│   ├── hooks/         # useForm
+│   ├── pages/         # Layout, Home, Listagem, Produto, Carrinho, Checkout, Sucesso,
+│   │                  # Login, Cadastro, Meus Pedidos, Minhas Informações e 404
+│   ├── utils/         # formatPrice, masks (máscaras) e validators (validações)
 │   ├── App.jsx        # Rotas
 │   ├── index.css      # Variáveis de cor e estilos globais
 │   └── main.jsx
@@ -113,15 +138,13 @@ Abra `http://localhost:5173` no navegador.
 
 ## 📝 Observações
 
-- Os produtos vêm de dados de exemplo em `src/data/products.js`, sem API.
-- Conforme a documentação, o carrinho é apenas ilustrativo e o botão "Comprar" não tem ação.
+- Não há back-end: produtos, carrinho, conta e pedidos usam dados de exemplo (`src/data`) e o `localStorage` do navegador, e o login é simulado (a senha não é verificada).
+- Os botões de login com Gmail e Facebook e o link "Esqueci minha senha" apenas informam que o recurso ainda não está disponível.
 - O breakpoint principal é o `lg` do PrimeFlex (992px): abaixo dele valem o menu lateral e o layout mobile.
 
 ## 🚧 Possíveis melhorias
 
-- Carrinho funcional com contador de itens.
 - Consumo de uma API real para os produtos.
-- Cadastro e login de usuários.
 - Testes automatizados.
 
 ---

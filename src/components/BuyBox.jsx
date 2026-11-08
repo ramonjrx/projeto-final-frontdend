@@ -1,7 +1,6 @@
 import { formatPrice } from '../utils/formatPrice';
 
-
-const BuyBox = ({ name, reference, stars, rating, price, priceDiscount, description, children }) => (
+const BuyBox = ({ name, reference, stars, rating, price, priceDiscount, description, message, onBuy, children }) => (
   <div className="flex flex-column" style={{ gap: '16px' }}>
     <h1
       style={{
@@ -66,8 +65,15 @@ const BuyBox = ({ name, reference, stars, rating, price, priceDiscount, descript
 
     {children}
 
+    {message && (
+      <p role="alert" style={{ margin: 0, fontSize: '14px', color: 'var(--error)' }}>
+        {message}
+      </p>
+    )}
+
     <button
       type="button"
+      onClick={onBuy}
       style={{
         height: '48px',
         border: 'none',

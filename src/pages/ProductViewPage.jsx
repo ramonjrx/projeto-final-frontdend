@@ -1,22 +1,35 @@
-import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import BuyBox from '../components/BuyBox';
 import Gallery from '../components/Gallery';
 import ProductListing from '../components/ProductListing';
 import ProductOptions from '../components/ProductOptions';
 import Section from '../components/Section';
+import { useStore } from '../context/StoreContext';
 import { products } from '../data/products';
-
 
 const PRODUCT_IMAGE_COUNT = 5;
 const images = Array.from({ length: PRODUCT_IMAGE_COUNT }, (_, i) => ({ src: `/product-image-${i + 1}.jpeg` }));
 
 const SIZES = ['39', '40', '41', '42', '43'];
-const COLORS = ['#6FEEFF', '#FF6969', '#5E5E5E', '#6D70B7'];
+const COLOR_NAMES = {
+  '#6FEEFF': 'Azul-claro',
+  '#FF6969': 'Vermelho',
+  '#5E5E5E': 'Cinza',
+  '#6D70B7': 'Roxo',
+};
+const COLORS = Object.keys(COLOR_NAMES);
 
 const optionLabel = { margin: '0 0 8px', fontSize: '14px', fontWeight: 700, color: 'var(--light-gray)' };
 
 const ProductViewPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useStore();
+  const [size, setSize] = useState(null);
+  const [color, setColor] = useState(null);
+  const [message, setMessage] = useState('');
+
   const product = products.find((item) => String(item.id) === id);
 
   if (!product) {
@@ -29,6 +42,34 @@ const ProductViewPage = () => {
       </div>
     );
   }
+
+  const handleSize = (option) => {
+    setSize(option);
+    setMessage('');
+  };
+
+  const handleColor = (option) => {
+    setColor(option);
+    setMessage('');
+  };
+
+  const handleBuy = () => {
+    if (!size || !color) {
+      setMessage('Selecione o tamanho e a cor para continuar.');
+      return;
+    }
+    addToCart({
+      productId: product.id,
+      name: product.name,
+      image: product.image,
+      price: product.price,
+      priceDiscount: product.priceDiscount,
+      size,
+      color,
+      colorName: COLOR_NAMES[color],
+    });
+    navigate('/carrinho');
+  };
 
   return (
     <>
@@ -46,14 +87,16 @@ const ProductViewPage = () => {
             price={product.price}
             priceDiscount={product.priceDiscount}
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip."
+            message={message}
+            onBuy={handleBuy}
           >
             <div>
               <p style={optionLabel}>Tamanho</p>
-              <ProductOptions options={SIZES} shape="square" radius="4px" type="text" />
+              <ProductOptions options={SIZES} shape="square" radius="4px" type="text" onChange={handleSize} />
             </div>
             <div>
               <p style={optionLabel}>Cor</p>
-              <ProductOptions options={COLORS} shape="circle" type="color" />
+              <ProductOptions options={COLORS} shape="circle" type="color" onChange={handleColor} />
             </div>
           </BuyBox>
         </div>
